@@ -1,0 +1,55 @@
+@font-face {
+    font-family: "Ubuntu";
+    src: local("Ubuntu"), url('/assets/fonts/Ubuntu/Ubuntu-Regular.ttf') format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UbuntuBold";
+    src: local("UbuntuBold"), url('/assets/fonts/Ubuntu/Ubuntu-Bold.ttf') format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UbuntuBoldItalic";
+    src: local("UbuntuBoldItalic"), url('/assets/fonts/Ubuntu/Ubuntu-BoldItalic.ttf') format("truetype");
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: "UbuntuLight";
+    src: local("UbuntuLight"), url('/assets/fonts/Ubuntu/Ubuntu-Light.ttf') format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UbuntuLightItalic";
+    src: local("UbuntuLightItalic"), url('/assets/fonts/Ubuntu/Ubuntu-LightItalic.ttf') format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UbuntuMedium";
+    src: local("UbuntuMedium"), url('/assets/fonts/Ubuntu/Ubuntu-Medium.ttf') format("truetype");
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "UbuntuMediumItalic";
+    src: local("UbuntuMediumItalic"), url('/assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf') format("truetype");
+    font-style: normal;
+}
+
+// MONTSERRAT
+@font-face {
+    font-family: "Montserrat";
+    src: local("Montserrat"), url('/assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "MontserratItalic";
+    src: local("MontserratItalic"), url('/assets/fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf');
+    font-weight: 400;
+}
