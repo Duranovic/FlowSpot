@@ -1,0 +1,13 @@
+@use '/src/styles/utilities/variables';
+
+.container{
+    margin-top: 50px;
+}
+.col{
+    margin: 0 20px;
+}
+.inner-container{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}

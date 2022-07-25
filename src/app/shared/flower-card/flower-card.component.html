@@ -1,0 +1,21 @@
+<div class="flower-card flower-card--favorite">
+  <picture>
+    <source media="(min-width:900px)" srcset="https://picsum.photos/280/350" />
+    <source media="(min-width:650px)" srcset="https://picsum.photos/232/290" />
+    <source media="(min-width:465px)" srcset="https://picsum.photos/184/230" />
+    <img
+      src="https://picsum.photos/280/350"
+      alt="Flowers"
+      style="width: auto"
+    />
+  </picture>
+  <div class="flower-card-overlay"></div>
+  <!-- <img src="assets/images/star-default.svg" alt="Star" class="star" /> -->
+  <app-star [favorite]="true"></app-star>
+  
+  <div class="content">
+    <h3 class="flower-name">Ballon flower</h3>
+    <span class="flower-latin-name">Platycodon grandiflorus</span>
+    <span class="sightings-info">125 sighings</span>
+  </div>
+</div>
