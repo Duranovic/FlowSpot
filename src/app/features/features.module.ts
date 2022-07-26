@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { LatestSightingsComponent } from './latest-sightings/latest-sightings.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -16,12 +18,14 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     LatestSightingsComponent,
     FavoritesComponent,
     CreateAccountComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
     FeaturesRoutingModule,
     SharedModule,
     MatDialogModule,
+    ReactiveFormsModule,
   ],
 })
 export class FeaturesModule { }

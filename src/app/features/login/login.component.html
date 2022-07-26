@@ -1,0 +1,19 @@
+<div class="login">
+    <button mat-dialog-close aria-label="Close modal">
+      <!-- Use ::after for showing an image -- in global styles -->
+    </button>
+  
+    <div mat-dialog-content>
+      <h1 mat-dialog-title>Welcome Back</h1>
+      <form [formGroup]="form">
+          <div class="form-group form-group--block">
+              <app-input type="email" label="Email Address" [control]="$any(form).get('email')"></app-input>
+              <app-input type="password" label="Password" [control]="$any(form).get('password')"></app-input>        
+          </div>
+          <div class="form-group form-group--block">
+              <button type="submit" class="button button--bigger">Login to your Account</button>
+          </div>
+      </form>
+    </div>
+  </div>
+  
