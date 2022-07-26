@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-input',
@@ -8,14 +8,11 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements OnInit {
-  @Input() type: string | undefined;
-  @Input() label: string | undefined;
-  @Input() value: string | undefined;
-  @Input() controlName: string | undefined;
-  @Input() fromControl: FormControl | undefined;
+  @Input() type: string;
+  @Input() label: string;
+  @Input() control: FormControl;
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

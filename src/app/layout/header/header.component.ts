@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import {MatDialog } from '@angular/material/dialog';
 import { CreateAccountComponent } from 'src/app/features/create-account/create-account.component';
+import { LoginComponent } from 'src/app/features/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +12,14 @@ export class HeaderComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
-  openDialog() {
-    this.dialog.open(CreateAccountComponent, {maxWidth: "440px", maxHeight: "410px"});
+  public openCreateAccountDialog(): void {
+    this.dialog.open(CreateAccountComponent, {width: "100%", maxWidth: "440px", maxHeight: "410px"});
   }
 
+  public openLoginDialog(): void {
+    this.dialog.open(LoginComponent, {width: "100%", maxWidth: "440px", maxHeight: "290px"});
+  }
 }

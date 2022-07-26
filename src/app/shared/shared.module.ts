@@ -4,6 +4,7 @@ import { FlowerCardComponent } from './flower-card/flower-card.component';
 import { FlowerListComponent } from './flower-list/flower-list.component';
 import { StarComponent } from './star/star.component';
 import { InputComponent } from './input/input.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { InputComponent } from './input/input.component';
     InputComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
   ],
   exports: [
     FlowerCardComponent,

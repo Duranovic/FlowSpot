@@ -3,7 +3,7 @@
 .flower-card{
     position: relative;
     border-radius: 3px;
-    
+
     .flower-name, .flower-latin-name{
         font-family: variables.$font_ubuntu__regular;
         color: variables.$white;
@@ -38,6 +38,7 @@
     .sightings-info{
         font-family: variables.$font_ubuntu__regular;
         font-size: 12px;
+        line-height: 1;
         border-radius: 20px;
         padding: 9px 15px;
         background: transparentize($color: variables.$black, $amount: 0.5);

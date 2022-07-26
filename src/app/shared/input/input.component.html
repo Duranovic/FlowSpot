@@ -1,4 +1,4 @@
-<div class="custom-input" [ngClass]="{'has-value': value}">
-    <input [type]="type" autocomplete="none">
+<div class="custom-input" [ngClass]="{'has-value': control.value}">
+    <input [type]="type" autocomplete="none" [formControl]="control">
     <label>{{ label }}</label> 
 </div>

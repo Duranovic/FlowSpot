@@ -51,7 +51,7 @@ header {
             font-size: 14px;
         }
 
-        a:not(.primary) {
+        a{
             color: variables.$gray;
         }
     }

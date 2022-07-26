@@ -2,12 +2,15 @@ form{
     display: flex;
     flex-direction: column;
     gap: 10px;
-    
+
     .form-group {
         display: flex;
         &--inline{
             flex-direction: row;
             gap: 10px;
+            app-input{
+                flex: 1;
+            }
         }
         &--block{
             flex-direction: column;
