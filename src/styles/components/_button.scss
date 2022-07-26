@@ -23,4 +23,27 @@
     box-shadow: 0px 15px 30px
       transparentize($color: variables.$black, $amount: 0.05);
   }
+  &--bigger{
+    font-size: 14px;
+    line-height: 1;
+    padding: 18px 28px;
+  }
+}
+
+// Dialog close button
+button[mat-dialog-close] {
+  cursor: pointer;
+  border: none;
+  background: none;
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  top: 0;
+  right: 0;
+  &::after {
+    content: '';
+    background-image: url('/assets/images/close-icon.svg');
+    position: absolute;
+    inset: 0;
+  }
 }

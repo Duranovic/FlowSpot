@@ -3,21 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FlowerCardComponent } from './flower-card/flower-card.component';
 import { FlowerListComponent } from './flower-list/flower-list.component';
 import { StarComponent } from './star/star.component';
-
-
+import { InputComponent } from './input/input.component';
 
 @NgModule({
   declarations: [
     FlowerCardComponent,
     FlowerListComponent,
-    StarComponent
+    StarComponent,
+    InputComponent,
   ],
   imports: [
     CommonModule
   ],
   exports: [
     FlowerCardComponent,
-    FlowerListComponent
+    FlowerListComponent,
+    InputComponent,
   ]
 })
 export class SharedModule { }

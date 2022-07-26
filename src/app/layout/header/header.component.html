@@ -10,7 +10,7 @@
           <li><a [routerLink]="['/latest-sightings']">Latest Sightings</a></li>
           <li><a [routerLink]="['/favorites']">Favorites</a></li>
           <li><a href="#" class="primary">Login</a></li>
-          <li><button class="button button--round">New Account</button></li>
+          <li><button class="button button--round" (click)="openDialog()">New Account</button></li>
         </ul>
       </nav>
     </div>
