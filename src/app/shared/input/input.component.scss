@@ -1,0 +1,40 @@
+@use '/src/styles/utilities/variables';
+
+.custom-input{
+    position: relative;
+    display: block;
+    border: 1px solid #DFE5EA;
+    border-radius: 3px;
+    background: #F5F6F7;
+
+    input{
+        display: block;
+        border: none;
+        background: #F5F6F7;
+        height: 50px;
+        width: 100%;
+        padding: 10px 15px 0;
+        font-family: variables.$font_ubuntu__regular;
+        font-size: 13px;
+        line-height: 1;
+        color: #334144;
+        border-radius: 3px;
+    }
+    label{
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #949EA0;
+        font-family: variables.$font_ubuntu__regular;
+        font-size: 13px;
+        line-height: 1;
+        transition: all .3s;
+        pointer-events: none;
+    }
+    input:focus + label, &.has-value label{
+        font-size: 10px;
+        top: 11px;
+        transform: translateY(0%);
+    }
+}
