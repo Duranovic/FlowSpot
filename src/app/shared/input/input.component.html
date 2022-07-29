@@ -1,4 +1,13 @@
-<div class="custom-input" [ngClass]="{'has-value': control.value}">
-    <input [type]="type" autocomplete="none" [formControl]="control">
-    <label>{{ label }}</label> 
+<div class="custom-input" [ngClass]="{'has-value': control.value, 'has-error': control.errors && (control.dirty || control.touched)}">
+    <ng-container *ngIf="(type==inputType.Date) else input">
+        <input matInput [matDatepicker]="picker" [formControl]="control">
+        <label>{{ label }}</label> 
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>        
+    </ng-container>
+
+    <ng-template #input>
+        <input [type]="type" [formControl]="control">
+        <label>{{ label }}</label> 
+    </ng-template>
 </div>

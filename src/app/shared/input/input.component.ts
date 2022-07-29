@@ -1,5 +1,6 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { InputType } from 'src/app/core/enums/input-type.enum';
 
 @Component({
   selector: 'app-input',
@@ -7,12 +8,12 @@ import { AbstractControl, FormControl } from '@angular/forms';
   styleUrls: ['./input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements OnInit {
-  @Input() type: string;
+export class InputComponent {
+  @Input() type: InputType;
   @Input() label: string;
   @Input() control: FormControl;
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+  public inputType = InputType;
+  
+  constructor() { }
 }
