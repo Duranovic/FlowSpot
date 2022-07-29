@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Flower } from 'src/app/core/models/flower.model';
 
 @Component({
   selector: 'app-flower-card',
@@ -6,11 +7,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./flower-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FlowerCardComponent implements OnInit {
-
+export class FlowerCardComponent {
+  @Input() flower: Flower;
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -1,22 +1,35 @@
 <div class="create-account">
-  <button mat-dialog-close aria-label="Close modal">
+  <button mat-dialog-close aria-label="Close modal" class="mat-dialog-close">
     <!-- Use ::after for showing an image -- in global styles -->
   </button>
 
   <div mat-dialog-content>
     <h1 mat-dialog-title>Create an Account</h1>
-    <form *ngIf="form" [formGroup]="form">
-        <div class="form-group form-group--inline">
-            <app-input type="text" label="First Name" [control]="$any(form).get('firstName')"></app-input>
-            <app-input type="text" label="Last Name" [control]="$any(form).get('lastName')"></app-input>
-        </div>
-        <div class="form-group form-group--block">
-            <app-input type="email" label="Email Address" [control]="$any(form).controls['email']"></app-input>
-            <app-input type="password" label="Password" [control]="$any(form).controls['password']"></app-input>        
-        </div>
-        <div class="form-group form-group--block">
-            <button type="submit" class="button button--bigger">Create Account</button>
-        </div>
-    </form>
+    <ng-container *ngIf="!successifullyCreatedAccountFlag else succesifullyCreated">
+      <form *ngIf="form" [formGroup]="form" (ngSubmit)="createAccount()">
+          <div class="form-group form-group--inline">
+              <app-input [type]="inputType.Text" label="First Name" [control]="$any(form).get('firstName')"></app-input>
+              <app-input [type]="inputType.Text" label="Last Name" [control]="$any(form).get('lastName')"></app-input>
+          </div>
+          <div class="form-group form-group--block">
+            <app-input [type]="inputType.Date" label="Date Of Birth" [control]="$any(form).controls['dateOfBirth']"></app-input>
+          </div>
+          <div class="form-group form-group--block">
+              <app-input [type]="inputType.Email" label="Email Address" [control]="$any(form).controls['email']"></app-input>
+              <app-input [type]="inputType.Password" label="Password" [control]="$any(form).controls['password']"></app-input>        
+          </div>
+          <div class="form-group form-group--block">
+              <button [disabled]="form.status === 'INVALID'" [type]="inputType.Submit" class="button button--bigger">Create Account</button>
+          </div>
+      </form>
+    </ng-container>
+    <ng-template #succesifullyCreated>
+      <div class="sucessifully-crated-account-content">
+        <p>Congratulations! You have successfully signed up for FlowrSpot!</p>
+        <button class="button" mat-dialog-close aria-label="Close modal" (click)="openLoginModal()">
+          OK
+        </button>
+      </div>
+    </ng-template>
   </div>
 </div>

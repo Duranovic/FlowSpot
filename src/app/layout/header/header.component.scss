@@ -2,57 +2,69 @@
 @use "/src/styles/utilities/variables";
 
 header {
-    color: variables.$primary_color;
-    @include mixins.font-montserrat(700);
-    background-color: variables.$white;
-    box-shadow: 0px 15px 30px transparentize($color: variables.$white, $amount: 0.5);
+  color: variables.$primary_color;
+  @include mixins.font-montserrat(700);
+  background-color: variables.$white;
+  box-shadow: 0px 15px 30px
+    transparentize($color: variables.$white, $amount: 0.5);
 
-    .col {
-        height: 80px;
-        padding: 20px 0;
+  .col {
+    height: 80px;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo-container {
+    position: relative;
+    padding-left: 35px;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translate(0, -50%);
+      width: 30px;
+      height: 30px;
+      background: url("/assets/images/logo.svg") no-repeat center;
+    }
+    .logo-text {
+      cursor: default;
+    }
+  }
+  nav {
+    flex: 1;
+    ul {
+      display: flex;
+      justify-content: flex-end;
+      gap: 60px;
+      align-items: center;
+    }
+    a,
+    button,
+    span {
+      @include mixins.font-montserrat(500);
+      font-size: 14px;
+    }
+    a,
+    span {
+      color: variables.$gray;
+    }
+    .profile {
+      button {
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        gap: 20px;
+
+        span {
+          margin: 0;
+        }
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
-
-    .logo-container {
-        position: relative;
-        padding-left: 35px;
-        flex: 1;
-
-        &::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translate(0, -50%);
-            width: 30px;
-            height: 30px;
-            background: url("/assets/images/logo.svg") no-repeat center;
-        }
-
-        .logo-text {
-            cursor: default;
-        }
-    }
-
-    nav {
-        flex: 1;
-
-        ul {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        a,
-        button {
-            @include mixins.font-montserrat(500);
-            font-size: 14px;
-        }
-
-        a{
-            color: variables.$gray;
-        }
-    }
+  }
 }

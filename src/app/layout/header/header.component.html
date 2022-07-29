@@ -4,13 +4,25 @@
       <div class="logo-container">
         <span class="logo-text">FlowrSpot</span>
       </div>
-      <nav>
+      <nav [ngClass]="{'logged-in': isLoggedIn}">
         <ul>
           <li><a [routerLink]="['/flowers']">Flowers</a></li>
           <li><a [routerLink]="['/latest-sightings']">Latest Sightings</a></li>
           <li><a [routerLink]="['/favorites']">Favorites</a></li>
-          <li><button class="button-link" (click)="openLoginDialog()">Login</button></li>
-          <li><button class="button button--round" (click)="openCreateAccountDialog()">New Account</button></li>
+          <ng-container *ngIf="!isLoggedIn else profile">
+            <li><button class="button-link" (click)="openLoginDialog()">Login</button></li>
+            <li><button class="button button--round" (click)="openCreateAccountDialog()">New Account</button></li>
+          </ng-container>
+          <ng-template #profile>
+            <li class="profile" *ngIf="isUserLoaded$ | async">
+              <ng-container *ngIf="userDetails$ | async as user">
+                <button (click)="openProfileDialog()">
+                  <span>{{user[0]?.first_name + ' ' + user[0]?.last_name}}</span>
+                  <img src="assets/images/profile-holder.png" />
+                </button>
+              </ng-container>
+            </li>
+          </ng-template>
         </ul>
       </nav>
     </div>

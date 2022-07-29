@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { Flower } from 'src/app/core/models/flower.model';
 
 @Component({
   selector: 'app-flower-list',
@@ -7,7 +8,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlowerListComponent implements OnInit {
-
+  @Input() flowers: Flower[];
   constructor() { }
 
   ngOnInit(): void {
