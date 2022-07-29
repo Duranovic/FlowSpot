@@ -1,0 +1,38 @@
+<ng-container *ngIf="loaded$ | async; else spinner">
+    <div class="profile-info" *ngIf="profileData$ | async as user">
+        <button mat-dialog-close aria-label="Close modal" class="mat-dialog-close">
+            <!-- Use ::after for showing an image -- in global styles -->
+        </button>
+    
+          <div mat-dialog-content>
+            <div class="profile-image-wrapper">
+                <img src="assets/images/profile-holder.png"/>
+                <h2>{{ user[0].first_name + ' ' + user[0].last_name }}</h2>
+            </div>      
+            <div class="profile-details">
+                <div class="profile-details-row">
+                    <span>First Name</span>
+                    <h3>{{user[0].first_name}}</h3>
+                </div>
+                <div class="profile-details-row">
+                    <span>Last Name</span>
+                    <h3>{{user[0].last_name}}</h3>
+                </div>
+                <div class="profile-details-row">
+                    <span>Date of Birth Name</span>
+                    <h3>May 20, 1980</h3>
+                </div>
+                <div class="profile-details-row">
+                    <span>Email Address</span>
+                    <h3>michael.berry@gmail.com</h3>
+                </div>
+            </div>  
+            <div class="logout-button-wrapper">
+                <button class="button button--bigger" (click)="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #spinner>
+    <mat-spinner></mat-spinner>
+</ng-template>
