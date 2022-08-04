@@ -7,30 +7,22 @@ import { TokenStorageService } from "../token-storage.service";
 
 @Injectable()
 
-export class ProfileDataService extends DefaultDataService<any>{
-    constructor(http: HttpClient, httpUrlGenerator: HttpUrlGenerator, private tokenStorageService: TokenStorageService) {
-        super('User', http, httpUrlGenerator);
-    }
+export class ProfileDataService {
+    constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) {}
 
-    override getAll(): Observable<any[]> {
-        const header = new HttpHeaders(
-            {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.tokenStorageService.getToken()}`,
-            }
-        );
-         
-        return this.http.get(`${environment.apiUrl}/users/me`, {headers: header}).pipe(
+    getProfile(): Observable<any> {
+        return this.http.get(`${environment.apiUrl}/users/me`, this.tokenStorageService.generateRequestOptions()).pipe(
             map((data: any)=>{
-                return [{...data.user}];
+                console.log("DATA: ", data);
+                return data.user;
             })
         );
     }
 
-    override getById(id: number | string): Observable<any> {
+    getSightings(id: number): Observable<any> {
         return this.http.get(`${environment.apiUrl}/users/${id}/sightings`).pipe(
             map((data: any)=>{
-                return {...data.user};
+                return [...data.sightings];
             })
         );
     }

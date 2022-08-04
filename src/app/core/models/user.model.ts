@@ -5,7 +5,8 @@ export interface User {
     password: string,
     first_name: string,
     last_name: string,
-    date_of_birth: string
+    date_of_birth: string,
+    sightings?: number;
 }
 
 export interface AuthentificationPost {

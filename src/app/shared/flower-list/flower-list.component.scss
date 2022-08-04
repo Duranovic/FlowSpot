@@ -1,13 +1,20 @@
 @use '/src/styles/utilities/variables';
+@use '/src/styles/utilities/mixins';
 
 .container{
     margin: 50px auto;
-}
-.col{
-    margin: 0 20px;
+    @include mixins.for-phone-only(){
+        margin: 26px auto;
+    }
 }
 .inner-container{
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
+    
+    app-flower-card{
+        @include mixins.for-phone-only{
+            width: calc(100% / 2 - 10px);
+        }
+    }
 }

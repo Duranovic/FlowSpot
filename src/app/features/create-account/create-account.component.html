@@ -5,7 +5,7 @@
 
   <div mat-dialog-content>
     <h1 mat-dialog-title>Create an Account</h1>
-    <ng-container *ngIf="!successifullyCreatedAccountFlag else succesifullyCreated">
+    <ng-container *ngIf="!(createdAccount$ | async); else succesifullyCreated">
       <form *ngIf="form" [formGroup]="form" (ngSubmit)="createAccount()">
           <div class="form-group form-group--inline">
               <app-input [type]="inputType.Text" label="First Name" [control]="$any(form).get('firstName')"></app-input>
@@ -24,7 +24,7 @@
       </form>
     </ng-container>
     <ng-template #succesifullyCreated>
-      <div class="sucessifully-crated-account-content">
+      <div class="success-step">
         <p>Congratulations! You have successfully signed up for FlowrSpot!</p>
         <button class="button" mat-dialog-close aria-label="Close modal" (click)="openLoginModal()">
           OK

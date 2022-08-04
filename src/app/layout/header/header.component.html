@@ -4,23 +4,24 @@
       <div class="logo-container">
         <span class="logo-text">FlowrSpot</span>
       </div>
-      <nav [ngClass]="{'logged-in': isLoggedIn}">
+      <button class="button-hamburger" (click)="openMobileNav()" [attr.aria-label]="mobileNavOpened ? 'close navigation' : 'open navigation'" [ngClass]="{'button-hamburger--close': mobileNavOpened}">
+        <!-- Image is set on ::after pseudo element-->
+      </button>      
+      <nav [ngClass]="{'logged-in': loggedIn$ | async, 'mobile-nav': mobileNavOpened}">
         <ul>
           <li><a [routerLink]="['/flowers']">Flowers</a></li>
           <li><a [routerLink]="['/latest-sightings']">Latest Sightings</a></li>
-          <li><a [routerLink]="['/favorites']">Favorites</a></li>
-          <ng-container *ngIf="!isLoggedIn else profile">
+          <ng-container *ngIf="!(loggedIn$ | async); else loggedIn">
             <li><button class="button-link" (click)="openLoginDialog()">Login</button></li>
             <li><button class="button button--round" (click)="openCreateAccountDialog()">New Account</button></li>
           </ng-container>
-          <ng-template #profile>
-            <li class="profile" *ngIf="isUserLoaded$ | async">
-              <ng-container *ngIf="userDetails$ | async as user">
+          <ng-template #loggedIn>
+            <li><a [routerLink]="['/favorites']">Favorites</a></li>
+            <li class="profile" *ngIf="userDetails$ | async as user">
                 <button (click)="openProfileDialog()">
-                  <span>{{user[0]?.first_name + ' ' + user[0]?.last_name}}</span>
+                  <span>{{user?.first_name + ' ' + user?.last_name}}</span>
                   <img src="assets/images/profile-holder.png" />
                 </button>
-              </ng-container>
             </li>
           </ng-template>
         </ul>

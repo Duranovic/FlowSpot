@@ -5,7 +5,8 @@
   
     <div mat-dialog-content>
       <h1 mat-dialog-title>Welcome Back</h1>
-      <form *ngIf="form" [formGroup]="form" (ngSubmit)="login()">
+      <ng-container *ngIf="!(loggedIn$ | async); else loggedIn">
+        <form *ngIf="form" [formGroup]="form" (ngSubmit)="login()">
           <div class="form-group form-group--block">
               <app-input [type]="inputType.Email" label="Email Address" [control]="$any(form).get('email')"></app-input>
               <app-input [type]="inputType.Password" label="Password" [control]="$any(form).get('password')"></app-input>        
@@ -14,6 +15,20 @@
               <button [type]="inputType.Submit" [disabled]="form.status === 'INVALID'" class="button button--bigger">Login to your Account</button>
           </div>
       </form>
+      </ng-container>
+      <ng-template #loggedIn>
+        <div class="success-step">
+          <p>Congratulations! You have successfully signed up for FlowrSpot!</p>
+          <div class="buttons-wrapper">
+            <button class="button" mat-dialog-close aria-label="Close modal">
+              OK
+            </button>
+            <button class="button" aria-label="Open profile modal" (click)="openProfileDialog()">
+              PROFILE
+            </button>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
   

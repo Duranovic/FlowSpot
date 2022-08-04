@@ -2,11 +2,19 @@
 @use "/src/styles/utilities/variables";
 
 header {
+  position: sticky;
+  top: 0;
+  z-index: 11;
   color: variables.$primary_color;
   @include mixins.font-montserrat(700);
   background-color: variables.$white;
   box-shadow: 0px 15px 30px
     transparentize($color: variables.$white, $amount: 0.5);
+
+  @include mixins.for-phone-only {
+    box-shadow: 0px 15px 30px
+      transparentize($color: variables.$black, $amount: 0.995);
+  }
 
   .col {
     height: 80px;
@@ -17,6 +25,8 @@ header {
   }
   .logo-container {
     position: relative;
+    display: flex;
+    align-items: center;
     padding-left: 35px;
 
     &::before {
@@ -25,16 +35,42 @@ header {
       top: 50%;
       left: 0;
       transform: translate(0, -50%);
-      width: 30px;
+      width: 26px;
       height: 30px;
       background: url("/assets/images/logo.svg") no-repeat center;
     }
     .logo-text {
       cursor: default;
+      font-size: 20px;
+      line-height: 14px;
     }
   }
   nav {
     flex: 1;
+    display: none;
+    @include mixins.for-desktop-up{
+        display: block;
+    }
+    &.mobile-nav{
+      display: block;
+      position: fixed;
+      z-index: 10;
+      top: 80px;
+      right: 0;
+      width: calc(50%);
+      height: calc(100vh - 80px);
+      background-color: variables.$white;
+      border-top: 1px solid rgb(240, 240, 240);
+      ul{
+        margin-top: 80px;
+        flex-direction: column;
+        .profile{
+          button{
+            flex-direction: column;
+          }
+        }
+      }
+    }
     ul {
       display: flex;
       justify-content: flex-end;
@@ -66,5 +102,28 @@ header {
         }
       }
     }
+  }
+  .button-hamburger {
+    position: relative;
+    width: 24px;
+    height: 16px;
+    margin-right: 10px;
+    @include mixins.for-desktop-up{
+        display: none;
+    }
+    
+    &::after {
+        content: "";
+        background-image: url("/assets/images/mm_hamburger.svg");
+        background-position: center;
+        position: absolute;
+        inset: 0;
+      }
+      &--close{
+        &::after{
+          background-image: url("/assets/images/close-icon.svg");
+          background-repeat: no-repeat; 
+        }
+      }
   }
 }

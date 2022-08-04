@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import {MatDialog } from '@angular/material/dialog';
-import { tap, Observable, map, first } from 'rxjs';
-import { ProfileService } from 'src/app/core/services/profile/profile.service';
+import { tap, Observable } from 'rxjs';
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import { CreateAccountComponent } from 'src/app/features/create-account/create-account.component';
 import { LoginComponent } from 'src/app/features/login/login.component';
 import { ProfileComponent } from 'src/app/features/profile/profile.component';
+import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
+import { ProfileFacade } from 'src/app/state/profile/profile.facade';
 
 @Component({
   selector: 'app-header',
@@ -13,21 +14,21 @@ import { ProfileComponent } from 'src/app/features/profile/profile.component';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public isLoggedIn: boolean; 
-  public isUserLoaded$: Observable<boolean>;
-  public userDetails$: Observable<any>;
+  public loggedIn$: Observable<boolean>;
+  public isUserLoaded$: Observable<boolean> = this.profileFacade.loaded$;
+  public userDetails$: Observable<any> = this.profileFacade.getProfile$;
+  public mobileNavOpened: boolean;
 
-  constructor(public dialog: MatDialog, private tokenStorageService: TokenStorageService, private profileService: ProfileService) { }
+  constructor(public dialog: MatDialog, private authentificationFacade: AuthentificationFacade, private ch: ChangeDetectorRef,private tokenStorageService: TokenStorageService, private profileFacade: ProfileFacade) { }
 
   public ngOnInit(): void {
-    this.isLoggedIn = (this.tokenStorageService.getToken() != null) ? true : false;
-    this.isUserLoaded$ = this.profileService.loaded$.pipe(
-      tap((loaded) => {
-         (loaded
-          ? (this.userDetails$ = this.profileService.entities$)
-          : (this.userDetails$ = this.profileService.getAll()));
+    this.loggedIn$ = this.authentificationFacade.getIsUserLoggedIn$.pipe(
+      tap((isLoggedIn)=>{
+        if(isLoggedIn) 
+        this.profileFacade.getProfile()
+        this.ch.detectChanges();
       })
-    );
+    )
   }
 
   public openCreateAccountDialog(): void {
@@ -40,5 +41,9 @@ export class HeaderComponent implements OnInit {
 
   public openProfileDialog(): void {
     this.dialog.open(ProfileComponent, {width: "100%", height: "100%", maxWidth: "590px", maxHeight: "610px"});
+  }
+
+  public openMobileNav(): void{
+    this.mobileNavOpened = !this.mobileNavOpened;
   }
 }

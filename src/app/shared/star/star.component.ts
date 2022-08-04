@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-star',
@@ -8,8 +8,11 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 })
 export class StarComponent {
   @Input() favorite: boolean | undefined;
+  @Output() markAsFavoriteEmitter = new EventEmitter<boolean>();
 
-  constructor() { 
-    console.log(this.favorite);
+  constructor() { }
+
+  public markAsFavorite(){
+    this.markAsFavoriteEmitter.emit(true);
   }
 }

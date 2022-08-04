@@ -9,6 +9,8 @@ import { Flower } from 'src/app/core/models/flower.model';
 })
 export class FlowerListComponent implements OnInit {
   @Input() flowers: Flower[];
+  @Input() showStars: boolean;
+  
   constructor() { }
 
   ngOnInit(): void {

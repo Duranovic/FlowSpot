@@ -5,4 +5,5 @@ export interface Flower {
     sightings: number,
     profile_picture: string;
     favorite: boolean;
+    favorite_id?: number;
 }

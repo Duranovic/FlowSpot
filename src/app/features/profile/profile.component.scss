@@ -1,10 +1,14 @@
 @use "/src/styles/utilities/variables";
+@use "/src/styles/utilities/mixins";
 
 .profile-info{
     position: relative;
     padding: 40px 90px 0;
     .mat-dialog-content{
         max-height: none;
+        @include mixins.for-phone-only{
+            padding: 0;
+        }
         .profile-image-wrapper{
             display: flex;
             align-items: center;
@@ -12,9 +16,16 @@
             h2{
                 font-size: 25px;
                 line-height: 1;
-                margin: 0 0 0 30px;
                 font-family: variables.$font_ubuntu__light;
                 color: #334144;
+                margin: 0 0 6px;
+            }
+            .profile-content-wrapper{
+                font-family: variables.$font_ubuntu__regular;
+                color: variables.$gray;
+                font-size: 13px;
+                line-height: 1;
+                margin-left: 30px;
             }
         }
         .profile-details{

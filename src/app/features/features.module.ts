@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { FeaturesRoutingModule } from './features-routing.module';
@@ -32,7 +32,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSnackBarModule,
     MatProgressSpinnerModule
   ],
-  providers: [DatePipe],
+  providers: [],
   exports: [
     ProfileComponent
   ]

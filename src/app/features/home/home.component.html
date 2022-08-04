@@ -1,6 +1,6 @@
-<ng-container *ngIf="loaded$ | async; else spinner">
-    <ng-container *ngIf="flowers$ | async as flowers" >
-        <app-flower-list [flowers]="flowers"></app-flower-list>
+<ng-container *ngIf="!(loading$ | async); else spinner">
+    <ng-container *ngIf="flowers$ | async as flowers">
+        <app-flower-list [flowers]="flowers" [showStars]="isLoggedIn"></app-flower-list>
     </ng-container>
 </ng-container>
 

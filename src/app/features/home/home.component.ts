@@ -1,24 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { tap, Observable } from 'rxjs';
-import { Flower } from 'src/app/core/models/flower.model';
-import { FlowersService } from 'src/app/core/services/flowers/flowers.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
+import { FlowersFacade } from 'src/app/state/flowers/flowers.facade';
 
 @Component({
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit {
-  loaded$: Observable<boolean>;
-  flowers$: Observable<Flower[]>;
+export class HomeComponent implements OnInit, OnDestroy {
+  loading$: Observable<boolean> = this.flowersFacade.flowersLoading$;
+  loaded$: Observable<boolean> = this.flowersFacade.flowersLoaded$;
+  flowers$: Observable<any> = this.flowersFacade.getFlowers$;
+  subscription: Subscription;
+  isLoggedIn: boolean;
 
-  constructor(private flowersService: FlowersService) {}
+  constructor(private flowersFacade: FlowersFacade, private authentificationFacade: AuthentificationFacade) {}
 
-  ngOnInit(): void {
-    this.loaded$ = this.flowersService.loaded$.pipe(
-      tap((loaded) => {
-        loaded
-          ? (this.flowers$ = this.flowersService.entities$)
-          : (this.flowers$ = this.flowersService.getAll());
-      })
-    );
+  public ngOnInit(): void {
+    this.flowersFacade.getFlowers();
+  
+    this.subscription = this.authentificationFacade.getIsUserLoggedIn$.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn;
+    });
+  }
+
+  public ngOnDestroy(): void{
+    this.subscription.unsubscribe();
   }
 }

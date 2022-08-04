@@ -1,4 +1,4 @@
-<div class="flower-card" [ngClass]="{'flower-card--favorite': flower.favorite}">
+<div class="flower-card" [ngClass]="{'flower-card--favorite': flower.favorite && showStar}">
     <img
     class="profile-picture"
       [src]="flower.profile_picture"
@@ -6,7 +6,7 @@
     />
   <div class="flower-card-overlay"></div>
   <!-- <img src="assets/images/star-default.svg" alt="Star" class="star" /> -->
-  <app-star [favorite]="flower.favorite"></app-star>
+  <app-star *ngIf="showStar" [favorite]="flower.favorite" (markAsFavoriteEmitter)="markAsFavorite($event)"></app-star>
   
   <div class="content">
     <h3 class="flower-name">{{flower.name}}</h3>

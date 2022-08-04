@@ -1,5 +1,6 @@
 @use 'variables';
 
+// fonts
 @mixin font-montserrat($font-weight: 400) {
     font-family: variables.$font_montserrat__regular;
     font-variation-settings: "wght" #{$font-weight};
@@ -9,3 +10,20 @@
     font-family: variables.$font_montserrat__italic;
     font-variation-settings: "wght" #{$font-weight};
 }
+
+// media queries
+@mixin for-phone-only {
+    @media (max-width: 599px) { @content; }
+  }
+  @mixin for-tablet-portrait-up {
+    @media (min-width: 600px) { @content; }
+  }
+  @mixin for-tablet-landscape-up {
+    @media (min-width: 900px) { @content; }
+  }
+  @mixin for-desktop-up {
+    @media (min-width: 1200px) { @content; }
+  }
+  @mixin for-big-desktop-up {
+    @media (min-width: 1800px) { @content; }
+  }
