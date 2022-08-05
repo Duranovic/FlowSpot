@@ -1,6 +1,12 @@
+// Angular and 3rd party
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-import { Flower } from 'src/app/core/models/flower.model';
+
+// Services
 import { FlowersFacade } from 'src/app/state/flowers/flowers.facade';
+
+// Models
+import { Flower } from 'src/app/core/models/flower.model';
+
 
 @Component({
   selector: 'app-flower-card',

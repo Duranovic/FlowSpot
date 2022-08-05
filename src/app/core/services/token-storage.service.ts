@@ -1,12 +1,13 @@
-import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 const TOKEN_KEY = 'auth-token';
 @Injectable({
   providedIn: 'root',
 })
 export class TokenStorageService {
   constructor() {}
-  signOut(): void {
+
+  public signOut(): void {
     window.sessionStorage.clear();
   }
   public saveToken(token: string): void {
@@ -16,7 +17,7 @@ export class TokenStorageService {
   public getToken(): string | null {
     return window.sessionStorage.getItem(TOKEN_KEY);
   }
-  public generateRequestOptions(): any {
+  public generateRequestOptions() {
     return {
       headers: {
         'Content-Type': 'application/json',

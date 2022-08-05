@@ -17,7 +17,7 @@
                 font-size: 25px;
                 line-height: 1;
                 font-family: variables.$font_ubuntu__light;
-                color: #334144;
+                color: variables.$slat-gray;
                 margin: 0 0 6px;
             }
             .profile-content-wrapper{
@@ -43,7 +43,7 @@
                     font-family: variables.$font_ubuntu__regular;
                     font-size: 18px;
                     line-height: 13px;
-                    color: #334144;
+                    color: variables.$slat-gray;
                     margin-top: 16px;
                 }
             }

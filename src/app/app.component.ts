@@ -1,5 +1,7 @@
+// Angular and 3rd party
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+
+// Services
 import { TokenStorageService } from './core/services/token-storage.service';
 import { AuthentificationFacade } from './state/authentification/authentification.facade';
 

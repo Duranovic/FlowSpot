@@ -1,4 +1,3 @@
-import { User } from "src/app/core/models/user.model"
 import { StatusCommonState } from "../app.state"
 
 export interface ProfileState {

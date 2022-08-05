@@ -1,6 +1,8 @@
+// Angular and 3rd party modules
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageNotFoundComponent } from '../views/page-not-found/page-not-found.component';
+
+// Components
 import { FavoritesComponent } from './favorites/favorites.component';
 import { HomeComponent } from './home/home.component';
 import { LatestSightingsComponent } from './latest-sightings/latest-sightings.component';

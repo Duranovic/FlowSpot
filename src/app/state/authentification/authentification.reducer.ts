@@ -1,28 +1,19 @@
+// Angular and 3rd party
 import { createReducer, on } from '@ngrx/store';
+
+// Constants, Models
 import { ACTION_STATUS_FAILURE, ACTION_STATUS_START, ACTION_STATUS_SUCCESS } from 'src/app/core/constants/redux-actions.constants';
-import { UsersService } from 'src/app/core/services/authentification/users.service';
-import {
-  createAccountFailure,
-  createAccountStart,
-  createAccountSuccess,
-  loginFailure,
-  loginStart,
-  loginSuccess,
-  resetAuthProps,
-  setAuthProps,
-  setAuthToken,
-  setCreatedAccount,
-  setLoggedIn,
-} from './authentification.action';
+import * as actions from './authentification.action';
 import { initialState } from './authentification.state';
 
 const _authentificationReducer = createReducer(
   initialState, 
-  on(loginStart, (state:any)=>({
+  on(actions.loginStart, (state:any)=>({
     ...state,
     status: ACTION_STATUS_START(state)
   })),
-  on(loginSuccess, (state:any, action)=>({
+  
+  on(actions.loginSuccess, (state:any, action)=>({
     ...state,
     user: {
       ...state.user,
@@ -31,7 +22,8 @@ const _authentificationReducer = createReducer(
     },
     status: ACTION_STATUS_SUCCESS
   })),
-  on(loginFailure, (state: any, error)=>({
+
+  on(actions.loginFailure, (state: any, error)=>({
     ...state,
     user: {
       ...state.user,
@@ -42,8 +34,10 @@ const _authentificationReducer = createReducer(
       error
     }
   })),
-  on(createAccountStart, (state)=>(ACTION_STATUS_START(state))),
-  on(createAccountSuccess, (state, action)=> ({
+
+  on(actions.createAccountStart, (state)=>(ACTION_STATUS_START(state))),
+
+  on(actions.createAccountSuccess, (state)=> ({
     ...state,
     user: {
       ...state.user,
@@ -51,11 +45,13 @@ const _authentificationReducer = createReducer(
     },
     status: ACTION_STATUS_SUCCESS,
   })),
-  on(createAccountFailure, (state, action) => ({
+
+  on(actions.createAccountFailure, (state, action) => ({
     ...state, 
     status: ACTION_STATUS_FAILURE(action.error)
   })),
-  on(setAuthProps, (state, action)=>({
+
+  on(actions.setAuthProps, (state, action)=>({
     ...state,
     user: {
       ...state.user,
@@ -63,22 +59,26 @@ const _authentificationReducer = createReducer(
       logged_in: action.logged_in
     }
   })),
-  on(resetAuthProps, (state)=>({...initialState})),
-  on(setLoggedIn, (state: any, action)=>({
+
+  on(actions.resetAuthProps, ()=>({...initialState})),
+
+  on(actions.setLoggedIn, (state: any, action)=>({
     ...state,
     user: {
       ...state.user,
       loggedIn: action.logged_in,
     }
   })),
-  on(setAuthToken, (state, action)=>({
+
+  on(actions.setAuthToken, (state, action)=>({
     ...state,
     user: {
       ...state.user,
       auth_token: action.auth_token
     }
   })),
-  on(setCreatedAccount, (state, action)=>({
+
+  on(actions.setCreatedAccount, (state, action)=>({
     ...state,
     user: {
       ...state.user,

@@ -1,18 +1,18 @@
+// Angular and 3rd party
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { InputType } from 'src/app/core/enums/input-type.enum';
-import {
-  MatSnackBar,
-} from '@angular/material/snack-bar';
-import { SNACKBAR_CONFIG } from 'src/app/core/constants/snackbar-config.constants';
-import { extractErrorMessage } from 'src/app/core/utils/account.utils';
-import { EMAIL_PATTERN } from 'src/app/core/constants/patterns.constants';
-import { TokenStorageService } from 'src/app/core/services/token-storage.service';
-import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
-import { Observable, tap } from 'rxjs';
-import { Dialog, DialogRef } from '@angular/cdk/dialog';
-import { ProfileComponent } from '../profile/profile.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Observable, tap } from 'rxjs';
+
+// Services
+import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
+
+// Components
+import { ProfileComponent } from '../profile/profile.component';
+
+// Constants and enums
+import { EMAIL_PATTERN } from 'src/app/core/constants/patterns.constants';
+import { InputType } from 'src/app/core/enums/input-type.enum';
 
 @Component({
   selector: 'app-login',
@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
   
   constructor(private formBuilder: FormBuilder, private dialog: MatDialog,private dialogRef: MatDialogRef<LoginComponent>, private authentificationFacade: AuthentificationFacade, private ch: ChangeDetectorRef) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.form = this.buildForm();
   }
 
-  public login(){
+  public login(): void{
     this.authentificationFacade.login(this.form?.getRawValue());
     this.loggedIn$ = this.authentificationFacade.getIsUserLoggedIn$.pipe(
       tap(()=>{
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  private buildForm(){
+  private buildForm(): FormGroup{
     return this.formBuilder.group({
       'email': new FormControl(null, [Validators.required, Validators.pattern(EMAIL_PATTERN)]),
       'password': new FormControl(null, [Validators.required, Validators.minLength(6)])

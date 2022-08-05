@@ -2,6 +2,7 @@
 
 $background-color: #F5F6F7;
 $border-color: #DFE5EA;
+
 .custom-input{
     position: relative;
     display: block;
@@ -14,27 +15,27 @@ $border-color: #DFE5EA;
     }
 
     input{
+        font-family: variables.$font_ubuntu__regular;
+        font-size: 13px;
         display: block;
         border: none;
         background: $background-color;
         height: 50px;
         width: 100%;
         padding: 10px 15px 0;
-        font-family: variables.$font_ubuntu__regular;
-        font-size: 13px;
         line-height: 1;
-        color: #334144;
+        color: variables.$slat-gray;
         border-radius: 3px;
     }
     label{
+        font-family: variables.$font_ubuntu__regular;
+        font-size: 13px;
+        line-height: 1;
+        color: variables.$gray;
         position: absolute;
         left: 15px;
         top: 50%;
         transform: translateY(-50%);
-        color: variables.$gray;
-        font-family: variables.$font_ubuntu__regular;
-        font-size: 13px;
-        line-height: 1;
         transition: all .3s;
         pointer-events: none;
     }

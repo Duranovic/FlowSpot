@@ -12,7 +12,6 @@ export interface FlowerState {
     }
 }
 
-
 const status = {
     loading: false,
     loaded: false,

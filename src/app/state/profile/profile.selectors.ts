@@ -1,4 +1,7 @@
+// Angular and 3rd party
 import { createFeatureSelector, createSelector } from "@ngrx/store";
+
+// Models
 import { ProfileState } from "./profile.state";
 
 const getProfileState =  createFeatureSelector<ProfileState>('profile');

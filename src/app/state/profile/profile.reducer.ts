@@ -1,38 +1,26 @@
 import { createReducer, on } from "@ngrx/store";
-import { getProfileFailure, getProfileStart, getProfileSuccess } from "./profile.actions";
+import { ACTION_STATUS_FAILURE, ACTION_STATUS_START, ACTION_STATUS_SUCCESS } from "src/app/core/constants/redux-actions.constants";
+import * as actions from "./profile.actions";
 import { initialState } from "./profile.state";
 
 const _profileReducer = createReducer(initialState, 
-    on(getProfileStart, (state: any)=>{        
+    on(actions.getProfileStart, (state: any)=>{        
         return {
             ...state,
-            status: {
-                loading: true,
-                loaded: false,
-                error: null
-            }
+            status: ACTION_STATUS_START
         }
 }),
-on(getProfileSuccess, (state:any, action)=>{
-    console.log(action);
+on(actions.getProfileSuccess, (state:any, action)=>{
     return {
         ...state,
         user: action.user,
-        status: {
-            loading: false,
-            loaded: true,
-            error: null,
-        }
+        status: ACTION_STATUS_SUCCESS
     }
 }),
-on(getProfileFailure, (state:any, action)=>{
+on(actions.getProfileFailure, (state:any, action)=>{
     return {
         ...state,
-        status: {
-            loading: false,
-            loaded: false,
-            error: action.error,
-        }
+        status: ACTION_STATUS_FAILURE(action.error)
     }
 })
 );

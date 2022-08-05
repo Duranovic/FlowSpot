@@ -1,42 +1,43 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { environment } from "src/environments/environment";
-import { User } from "../../models/user.model";
+// Angular and 3rd party modules
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+// Models
+import { IUser, User } from '../../models/user.model';
+// Constants
+import { environment } from 'src/environments/environment';
 
 @Injectable()
-
 export class AuthentificationDataService {
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-    public login(user: any): Observable<any>{
-        // Model properties and formControls names are different so we need to map it correctly
-        const _user: Partial<User> = {
-            email: user.email,
-            password: user.password,
-        };
-        
-        return this.http.post(`${environment.apiUrl}/users/login`, _user).pipe(
-            map((data: any)=>{                
-                return data.auth_token;
-            })
-);
-    }
+  public login(user: Partial<IUser>): Observable<string> {
+    const _user: Partial<IUser> = {
+      email: user.email,
+      password: user.password,
+    };
 
-    public createAccount(user: any): Observable<any>{
-        const _user: User = {
-            first_name: user.firstName,
-            last_name: user.lastName,
-            email: user.email,
-            password: user.password,
-            date_of_birth: user.dateOfBirth
-        };
+    return this.http.post(`${environment.apiUrl}/users/login`, _user).pipe(
+      map((data: any) => {
+        return data.auth_token;
+      })
+    );
+  }
 
-        return this.http.post(`${environment.apiUrl}/users/register`, _user).pipe(
-            map((data: any)=>{
-                const auth_token = data.auth_token;
-                return {..._user, auth_token};
-            })
-        );
-    }
+  public createAccount(user: any): Observable<any> {
+    const _user: User = new User(
+      user.email,
+      user.password,
+      user.firstName,
+      user.lastName,
+      user.dateOfBirth
+    );
+
+    return this.http.post(`${environment.apiUrl}/users/register`, _user).pipe(
+      map((data: any) => {
+        const auth_token = data.auth_token;
+        return { ..._user, auth_token };
+      })
+    );
+  }
 }

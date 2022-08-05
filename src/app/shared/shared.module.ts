@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatMomentDateModule } from "@angular/material-moment-adapter"
 
 // Components
 import { FlowerCardComponent } from './flower-card/flower-card.component';
@@ -24,7 +23,6 @@ import { InputComponent } from './input/input.component';
     ReactiveFormsModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatMomentDateModule,
   ],
   exports: [
     FlowerCardComponent,

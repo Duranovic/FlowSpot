@@ -1,9 +1,12 @@
+// Angular and 3rd party
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
 import { RouterModule } from '@angular/router';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
+
+// Components
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [

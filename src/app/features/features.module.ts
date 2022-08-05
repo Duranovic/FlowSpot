@@ -1,18 +1,22 @@
+// Angular and 3rd party modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+// Custom defined modules
 import { FeaturesRoutingModule } from './features-routing.module';
 import { SharedModule } from '../shared/shared.module';
+
+// Components
 import { HomeComponent } from './home/home.component';
 import { LatestSightingsComponent } from './latest-sightings/latest-sightings.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ProfileComponent } from './profile/profile.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -32,7 +36,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatSnackBarModule,
     MatProgressSpinnerModule
   ],
-  providers: [],
   exports: [
     ProfileComponent
   ]

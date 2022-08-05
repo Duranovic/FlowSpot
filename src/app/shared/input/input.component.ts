@@ -1,5 +1,8 @@
+// Angular and 3rd party
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
+// Enums
 import { InputType } from 'src/app/core/enums/input-type.enum';
 
 @Component({

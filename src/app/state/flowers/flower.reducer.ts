@@ -1,36 +1,27 @@
+// Angular and 3rd party
 import { createReducer, on } from '@ngrx/store';
+
+// Constants, Models
 import {
   ACTION_STATUS_FAILURE,
   ACTION_STATUS_START,
   ACTION_STATUS_SUCCESS,
 } from 'src/app/core/constants/redux-actions.constants';
 import { Flower } from 'src/app/core/models/flower.model';
-import {
-  deleteFavoriteFlowerStart,
-  deleteFavoriteFlowerSuccess,
-  getFavoriteFlowersFailure,
-  getFavoriteFlowersStart,
-  getFavoriteFlowersSuccess,
-  getFlowersFailure,
-  getFlowersStart,
-  getFlowersSuccess,
-  setFavoriteFlowerFailure,
-  setFavoriteFlowerStart,
-  setFavoriteFlowerSuccess,
-} from './flower.action';
+import * as actions from './flower.action';
 import { initialState } from './flower.state';
 
 const _flowersReducer = createReducer(
   initialState,
 
-  on(getFlowersStart, (state: any) => ({
+  on(actions.getFlowersStart, (state: any) => ({
     ...state,
     flowers: {
       status: ACTION_STATUS_START
     },
   })),
 
-  on(getFlowersSuccess, (state: any, action) => {
+  on(actions.getFlowersSuccess, (state: any, action) => {
     if(action.favoriteFlowers.length === 0){
       return {
         ...state,
@@ -72,7 +63,7 @@ const _flowersReducer = createReducer(
     }
   }),
 
-  on(getFlowersFailure, (state: any, action) => ({
+  on(actions.getFlowersFailure, (state: any, action) => ({
     ...state,
     flowers: {
       ...state.flowers,
@@ -85,14 +76,14 @@ const _flowersReducer = createReducer(
     },
   })),
 
-  on(getFavoriteFlowersStart, (state: any) => ({
+  on(actions.getFavoriteFlowersStart, (state: any) => ({
     ...state,
     favoriteFlowers: {
       status: ACTION_STATUS_START
     },
   })),
 
-  on(getFavoriteFlowersSuccess, (state: any, action) => ({
+  on(actions.getFavoriteFlowersSuccess, (state: any, action) => ({
     ...state,
     favoriteFlowers: {
       list: action.fav_flowers,
@@ -104,7 +95,7 @@ const _flowersReducer = createReducer(
     },
   })),
 
-  on(getFavoriteFlowersFailure, (state: any, action) => ({
+  on(actions.getFavoriteFlowersFailure, (state: any, action) => ({
     ...state,
     favoriteFlowers: {
       ...state.favorite_flowers,
@@ -116,7 +107,7 @@ const _flowersReducer = createReducer(
     },
   })),
 
-  on(setFavoriteFlowerStart, (state) => ({
+  on(actions.setFavoriteFlowerStart, (state) => ({
     ...state,
     flowers: {
       ...state.flowers,
@@ -124,7 +115,7 @@ const _flowersReducer = createReducer(
     },
   })),
 
-  on(setFavoriteFlowerSuccess, (state, action: any) => {
+  on(actions.setFavoriteFlowerSuccess, (state, action: any) => {
     return {
       ...state,
       flowers: {
@@ -142,7 +133,7 @@ const _flowersReducer = createReducer(
     };
   }),
 
-  on(setFavoriteFlowerFailure, (state, action) => ({
+  on(actions.setFavoriteFlowerFailure, (state, action) => ({
     ...state,
     flowers: {
       ...state.flowers,
@@ -150,7 +141,7 @@ const _flowersReducer = createReducer(
     },
   })),
 
-  on(deleteFavoriteFlowerStart, (state) => ({
+  on(actions.deleteFavoriteFlowerStart, (state) => ({
     ...state,
     flowers: {
       ...state.flowers,
@@ -158,7 +149,7 @@ const _flowersReducer = createReducer(
     },
   })),
 
-  on(deleteFavoriteFlowerSuccess, (state, action) => ({
+  on(actions.deleteFavoriteFlowerSuccess, (state, action) => ({
     ...state,
     flowers: {
       ...state.flowers,

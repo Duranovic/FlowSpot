@@ -1,10 +1,15 @@
+// Angular and 3rd party
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import {MatDialog } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { tap, Observable } from 'rxjs';
-import { TokenStorageService } from 'src/app/core/services/token-storage.service';
+
+// Components
 import { CreateAccountComponent } from 'src/app/features/create-account/create-account.component';
 import { LoginComponent } from 'src/app/features/login/login.component';
 import { ProfileComponent } from 'src/app/features/profile/profile.component';
+
+// Services
+import { TokenStorageService } from 'src/app/core/services/token-storage.service';
 import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
 import { ProfileFacade } from 'src/app/state/profile/profile.facade';
 
@@ -24,9 +29,10 @@ export class HeaderComponent implements OnInit {
   public ngOnInit(): void {
     this.loggedIn$ = this.authentificationFacade.getIsUserLoggedIn$.pipe(
       tap((isLoggedIn)=>{
-        if(isLoggedIn) 
-        this.profileFacade.getProfile()
-        this.ch.detectChanges();
+        if(isLoggedIn) {
+          this.profileFacade.getProfile()
+          this.ch.detectChanges();
+        }
       })
     )
   }

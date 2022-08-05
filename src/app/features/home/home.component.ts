@@ -1,5 +1,8 @@
+// Angular and 3rd party
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+
+// Services
 import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
 import { FlowersFacade } from 'src/app/state/flowers/flowers.facade';
 
@@ -7,11 +10,11 @@ import { FlowersFacade } from 'src/app/state/flowers/flowers.facade';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  loading$: Observable<boolean> = this.flowersFacade.flowersLoading$;
-  loaded$: Observable<boolean> = this.flowersFacade.flowersLoaded$;
-  flowers$: Observable<any> = this.flowersFacade.getFlowers$;
-  subscription: Subscription;
-  isLoggedIn: boolean;
+  public loading$: Observable<boolean> = this.flowersFacade.flowersLoading$;
+  public loaded$: Observable<boolean> = this.flowersFacade.flowersLoaded$;
+  public flowers$: Observable<any> = this.flowersFacade.getFlowers$;
+  public subscription: Subscription;
+  public isLoggedIn: boolean;
 
   constructor(private flowersFacade: FlowersFacade, private authentificationFacade: AuthentificationFacade) {}
 

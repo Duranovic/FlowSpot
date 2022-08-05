@@ -1,17 +1,12 @@
+// Angular and 3rd party modules
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { tap, Observable, withLatestFrom, switchMap, combineLatest, of } from 'rxjs';
-import { ProfileService } from 'src/app/core/services/profile/profile.service';
-import { ProfileDataService } from 'src/app/core/services/profile/profile-data.service';
+import { MatDialogRef } from '@angular/material/dialog';
+
+// Services
 import { TokenStorageService } from 'src/app/core/services/token-storage.service';
-import { Store } from '@ngrx/store';
-import { getFavoriteFlowersStart, getFlowersStart } from 'src/app/state/flowers/flower.action';
-import { AppState } from 'src/app/state/app.state';
-import { getFlowers } from 'src/app/state/flowers/flower.selectors';
-import { getProfileStart } from 'src/app/state/profile/profile.actions';
 import { ProfileFacade } from 'src/app/state/profile/profile.facade';
 import { FlowersFacade } from 'src/app/state/flowers/flowers.facade';
 import { AuthentificationFacade } from 'src/app/state/authentification/authentification.facade';
-import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -20,9 +15,9 @@ import { MatDialogRef } from '@angular/material/dialog';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileComponent implements OnInit {
-  loaded$ = this.profileFacade.loaded$;
-  loading$ = this.profileFacade.loading$;
-  profileData$ = this.profileFacade.getProfile$;
+  public loaded$ = this.profileFacade.loaded$;
+  public loading$ = this.profileFacade.loading$;
+  public profileData$ = this.profileFacade.getProfile$;
 
   constructor(
     private tokenStorage: TokenStorageService,
@@ -32,11 +27,11 @@ export class ProfileComponent implements OnInit {
     private dialogRef: MatDialogRef<ProfileComponent>
   ) {}
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.flowersFacade.getFavoriteFlowers();
   }
 
-  public logout() {
+  public logout(): void {
     this.authentificationFacade.resetAuthProps();
     this.tokenStorage.signOut();
     this.dialogRef.close();
