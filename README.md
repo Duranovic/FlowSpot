@@ -1,5 +1,13 @@
 # FlowrSpot
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+
+![image](https://user-images.githubusercontent.com/32494609/226725229-718372da-09b3-4af2-99d0-b735b782c4d2.png)
+
+![image](https://user-images.githubusercontent.com/32494609/226725657-9e2ffe54-06ae-4fb2-a8df-e1f9e0f297b9.png)
+
+![image](https://user-images.githubusercontent.com/32494609/226725868-e1758c39-efea-43fe-97bd-94dd2cdc209e.png)
+
+
 ## STEPS TO START WITH THE PROJECT
 
 # 1. Install node modules
